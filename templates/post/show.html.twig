@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des publications
+{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h1>Article :{{ post.title }}</h1>
+		<div class=" mt-3 alert alert-dismissible alert-secondary">
+			<h4 class="alert-heading">{{ post.title }}</h4>
+			<p class="mb-0">{{ post.content }}</p>
+			<hr>
+			<p>Date de création de l'article :
+				<b>{{ post.createdAt|date('d/m/Y') }}</b>
+			</p>
+			<small>
+				Auteur :
+				<em>{{ post.author }}</em>
+			</small>
+		</div>
+	</div>
+{% endblock %}

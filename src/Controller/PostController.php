@@ -20,15 +20,18 @@ class PostController extends AbstractController
     public function index(): Response
     {
         $posts = $this->postRepository->findAll();
-        dd($posts);
+        // dd($posts);
         return $this->render('post/index.html.twig', [
-            'controller_name' => 'PostController',
+            'posts' => $posts,
         ]);
     }
 
     #[Route('/posts/{id}', name: 'app_post_show')]
     public function show($id) {
-        $post = $this->postRepository->findById($id);
-        dd($post);
+        $post = $this->postRepository->findById($id)[0];
+        // dd($post);
+        return $this->render('post/show.html.twig', [
+            'post' => $post
+        ]);
     }
 }
