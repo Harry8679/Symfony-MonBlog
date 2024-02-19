@@ -21,6 +21,18 @@ class PostRepository extends ServiceEntityRepository
         parent::__construct($registry, Post::class);
     }
 
+    public function findByDateDesc(): array
+    {
+        return $this->createQueryBuilder('p')
+            // ->andWhere('p.exampleField = :val')
+            // ->setParameter('val', $value)
+            ->orderBy('p.createdAt', 'DESC')
+            // ->setMaxResults(10)
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Post[] Returns an array of Post objects
 //     */

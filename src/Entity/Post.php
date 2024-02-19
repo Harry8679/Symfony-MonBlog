@@ -23,8 +23,9 @@ class Post
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
     private ?\DateTimeInterface $createdAt = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $author = null;
+    #[ORM\ManyToOne(inversedBy: 'posts')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
 
     public function getId(): ?int
     {
@@ -67,14 +68,14 @@ class Post
         return $this;
     }
 
-    public function getAuthor(): ?string
+    public function getUser(): ?User
     {
-        return $this->author;
+        return $this->user;
     }
 
-    public function setAuthor(string $author): static
+    public function setUser(?User $user): static
     {
-        $this->author = $author;
+        $this->user = $user;
 
         return $this;
     }
